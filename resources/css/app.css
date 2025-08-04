@@ -1,0 +1,31 @@
+:root {
+    font-family: Inter, sans-serif;
+    font-feature-settings: 'liga'1, 'calt'1;
+    /* fix for Chrome */
+}
+
+@supports (font-variation-settings: normal) {
+    :root {
+        font-family: InterVariable, sans-serif;
+    }
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100svh;
+    font-size: 2em;
+    background-color: #080218;
+    color: #fff;
+}
+
+h1 {
+    font-weight: 900;
+}
