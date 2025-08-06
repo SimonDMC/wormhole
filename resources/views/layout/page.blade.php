@@ -9,7 +9,10 @@
         <link rel="preconnect" href="https://rsms.me/">
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
 
-        @vite(['resources/js/app.js'])
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+        <meta name="vapid-public-key" content="{{ env('VAPID_PUBLIC_KEY') }}">
+
+        @vite(['resources/js/app.ts'])
     </head>
     <body>
         @yield('page')
