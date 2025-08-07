@@ -6,7 +6,7 @@ navigator.serviceWorker.register("/sw.js");
 // joining room //
 
 document.getElementById("join-btn")?.addEventListener("click", () => {
-    document.getElementById("join")?.classList.remove("hidden");
+    document.getElementById("join")?.classList.toggle("hidden");
     document.getElementById("join-code")?.focus();
 });
 
@@ -67,6 +67,7 @@ document
         }
 
         document.getElementById("name-wrap")?.classList.remove("hidden");
+        document.getElementById("name")?.focus();
     });
 
 document
@@ -100,4 +101,25 @@ document.getElementById("name-arrow")?.addEventListener("click", async () => {
     });
 
     if (res.ok) window.location.href = "/dashboard";
+    else document.getElementById("cant-join")?.classList.remove("hidden");
+});
+
+// dashboard //
+
+document.getElementById("link-btn")?.addEventListener("click", () => {
+    document.getElementById("link-wrap")?.classList.toggle("hidden");
+    document.getElementById("link")?.focus();
+});
+
+const roomCode = document.getElementById("room-code");
+roomCode?.addEventListener("click", () => {
+    const code = roomCode.innerHTML;
+    navigator.clipboard.writeText(code);
+    roomCode.innerHTML = "&nbsp;Copied!&nbsp;";
+
+    roomCode.onmouseleave = () => {
+        setTimeout(() => {
+            roomCode.innerHTML = code;
+        }, 300);
+    };
 });

@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('p256dh');
             $table->string('auth');
             $table->string('endpoint');
-            $table->foreignId('session_id');
+            $table->boolean('is_mobile');
             $table->timestamps();
         });
     }

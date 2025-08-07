@@ -6,8 +6,6 @@ use App\Models\Device;
 use App\Models\Room;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Minishlink\WebPush\WebPush;
-use Minishlink\WebPush\Subscription;
 
 class RoomController extends Controller
 {
@@ -37,9 +35,12 @@ class RoomController extends Controller
             'endpoint' => $json['endpoint'],
             'p256dh' => $json['keys']['p256dh'],
             'auth' => $json['keys']['auth'],
+            'is_mobile' => preg_match('/(iPhone|iPad|Android)/', $request->userAgent()),
         ]);
 
-        $subscription = Subscription::create([
+        session(['device_id' => $device->id]);
+
+        /* $subscription = Subscription::create([
               "endpoint" => $device->endpoint,
               "keys" => [
                   'p256dh' => $device->p256dh,
@@ -48,7 +49,7 @@ class RoomController extends Controller
         ]);
 
         $webPush = new WebPush(['VAPID' => [
-            'subject' => 'mailto:simon@simondmc.com', 
+            'subject' => env('VAPID_CONTACT'),
             'publicKey' => env('VAPID_PUBLIC_KEY'),
             'privateKey' => env('VAPID_PRIVATE_KEY'),
         ]]);
@@ -56,8 +57,8 @@ class RoomController extends Controller
             'title' => 'Hello!',
             'text' => 'Encrypted body content',
             'url' => 'https://example.com',
-        ]));
+        ])); */
 
-        return response('OK', 400);
+        return response('OK', 200);
     }
 }

@@ -1,3 +1,5 @@
+@import './view-transitions.css';
+
 :root {
     font-family: Inter, sans-serif;
     font-feature-settings: 'liga'1, 'calt'1;
@@ -14,6 +16,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    user-select: none;
 }
 
 body {
@@ -59,7 +62,6 @@ h1 {
     height: 5em;
     transition: color .2s, scale .15s;
     cursor: pointer;
-    user-select: none;
 }
 
 .box svg {
@@ -83,7 +85,7 @@ h1 {
     gap: .3em;
 }
 
-input {
+input[type="text"] {
     background-color: #0b0b0b;
     outline: none;
     border: none;
@@ -102,7 +104,7 @@ input::placeholder {
     color: #ccc;
 }
 
-#join.hidden, #invalid-code.hidden, #name-wrap.hidden {
+.hidden {
     translate: 0 -.1em;
     opacity: 0;
     pointer-events: none;
@@ -128,13 +130,20 @@ input::placeholder {
     scale: .98;
 }
 
-#invalid-code {
+.error-txt {
     font-size: .8em;
     color: #cc0000;
     font-weight: 500;
     position: absolute;
-    margin-top: 12.2em;
     transition: opacity .2s, translate .2s;
+}
+
+#invalid-code {
+    margin-top: 12.2em;
+}
+
+#cant-join {
+    margin-top: 7.6em;
 }
 
 button {
@@ -167,4 +176,121 @@ button:active {
 #name {
     width: 10em;
     padding: .2em .6em;
+}
+
+#link-wrap {
+    position: absolute;
+    margin-top: 7.25em;
+    transition: opacity .2s, translate .2s;
+    display: flex;
+    gap: .3em;
+}
+
+#link {
+    width: 10.9em;
+    padding: .2em .6em;
+}
+
+#progress-wrap {
+    position: absolute;
+    width: 10.4em;
+    background-color: #0b0b0b;
+    height: .25em;
+    margin-top: 6.25em;
+    border-radius: 5px;
+    transition: opacity .2s, translate .2s;
+}
+
+#progress-inner {
+    height: 100%;
+    background-color: #ccc;
+    border-radius: inherit;
+    width: 0;
+}
+
+/**************************/
+
+#bar {
+    position: absolute;
+    margin-left: 13em;
+    width: 2px;
+    height: 6em;
+    background-color: #ccc;
+    border-radius: 1em;
+}
+
+#side {
+    position: absolute;
+    margin-left: 25.5em;
+}
+
+#room-code-text {
+    font-weight: 500;
+    margin-bottom: .3em;
+    flex-shrink: 0;
+}
+
+#room-code {
+    background-color: #0b0b0b;
+    padding: .1em .3em;
+    border-radius: 5px;
+    color: transparent;
+    transition: color .2s;
+    cursor: pointer;
+}
+
+#room-code::before {
+    content: 'hover';
+    position: absolute;
+    color: #555;
+    margin: .25em 1em;
+    border-radius: 5px;
+    transition: color .2s;
+}
+
+#room-code:hover {
+    color: #fff;
+}
+
+#room-code:hover::before {
+    color: transparent;
+}
+
+#devices {
+    background-color: #0b0b0b;
+    border-radius: 5px;
+    padding: .3em .4em;
+}
+
+#devices-head {
+    color: #ccc;
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: .6em;
+    padding-bottom: .5em;
+}
+
+#devices-body {
+    display: flex;
+    flex-direction: column;
+    gap: .15em;
+    width: 9em;
+}
+
+.device {
+    font-size: .8em;
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    gap: .3em;
+    white-space: nowrap;
+}
+
+.device svg {
+    flex-shrink: 0;
+}
+
+.device span {
+    text-overflow: ellipsis;
+    overflow: hidden;
 }

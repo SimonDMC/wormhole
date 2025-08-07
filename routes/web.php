@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\RoomController;
+use App\Http\Middleware\RegisteredMiddleware;
 use App\Http\Middleware\RoomMiddleware;
+use App\Http\Middleware\UnregisteredMiddleware;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['middleware' => 'guest'], function () {
+Route::group(['middleware' => UnregisteredMiddleware::class], function () {
     Route::view('/', 'pages.landing')
         ->name('landing');
     Route::view('/no-support', 'pages.no-support')
@@ -19,4 +21,9 @@ Route::group(['middleware' => 'guest'], function () {
         ->middleware(RoomMiddleware::class);
     Route::post('/register', [RoomController::class, 'register'])
         ->name('room.register');
+});
+
+Route::group(['middleware' => RegisteredMiddleware::class], function () {
+    Route::view('/dashboard', 'pages.dashboard')
+        ->name('dashboard');
 });

@@ -9,4 +9,10 @@ class Room extends Model
     protected $fillable = [
         'code'
     ];
+
+    public function devices()
+    {
+        return $this->hasMany(Device::class);
+    }
+
 }

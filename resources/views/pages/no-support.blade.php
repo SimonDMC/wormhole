@@ -1,7 +1,5 @@
 @extends('layout.page')
 
-@section('title') Wormhole @endsection
-
 @section('page')
     <div class="copy">
         <p>Notifications are not supported.</p>
