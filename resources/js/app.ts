@@ -3,6 +3,10 @@ import "../css/app.css";
 
 navigator.serviceWorker.register("/sw.js");
 
+const csrfToken = (
+    document.querySelector('meta[name="csrf-token"]') as HTMLMetaElement
+).content;
+
 // joining room //
 
 document.getElementById("join-btn")?.addEventListener("click", () => {
@@ -76,34 +80,6 @@ document
         if (e.key == "Enter") document.getElementById("name-arrow")?.click();
     });
 
-document.getElementById("name-arrow")?.addEventListener("click", async () => {
-    let registration = await navigator.serviceWorker.ready;
-    let pushSubscription = await registration.pushManager.getSubscription();
-
-    const input = document.getElementById("name") as HTMLInputElement;
-    const code = window.location.pathname.split("/")[2];
-
-    const res = await fetch("/register", {
-        method: "POST",
-        body: JSON.stringify({
-            ...pushSubscription?.toJSON(),
-            name: input.value,
-            code,
-            _token: (
-                document.querySelector(
-                    'meta[name="csrf-token"]'
-                ) as HTMLMetaElement
-            ).content,
-        }),
-        headers: {
-            "Content-Type": "application/json",
-        },
-    });
-
-    if (res.ok) window.location.href = "/dashboard";
-    else document.getElementById("cant-join")?.classList.remove("hidden");
-});
-
 // dashboard //
 
 document.getElementById("link-btn")?.addEventListener("click", () => {
@@ -112,14 +88,19 @@ document.getElementById("link-btn")?.addEventListener("click", () => {
 });
 
 const roomCode = document.getElementById("room-code");
+let copyUnclickable = false;
 roomCode?.addEventListener("click", () => {
+    if (copyUnclickable) return;
+
     const code = roomCode.innerHTML;
-    navigator.clipboard.writeText(code);
+    navigator.clipboard.writeText(code.trim());
     roomCode.innerHTML = "&nbsp;Copied!&nbsp;";
+    copyUnclickable = true;
 
     roomCode.onmouseleave = () => {
         setTimeout(() => {
             roomCode.innerHTML = code;
+            copyUnclickable = false;
         }, 300);
     };
 });

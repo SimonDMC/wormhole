@@ -1,10 +1,3 @@
-@php
-    use App\Models\Device;
-    use App\Models\Room;
-
-    $room = Room::findOrFail(Device::findOrFail(session('device_id'))->room_id);
-@endphp
-
 @extends('layout.page')
 
 @section('page')
@@ -33,27 +26,6 @@
         <div id="progress-inner"></div>
     </div>
 
-    {{--  --}}
-
     <div id="bar"></div>
-    <div id="side">
-        <div id="room-code-text">Room code: <code id="room-code">
-            {{ $room->code }}
-        </code></div>
-        <div id="devices">
-            <div id="devices-head">Devices</div>
-            <div id="devices-body">
-                @foreach ( $room->devices as $device)
-                    <div class="device">
-                        @if ($device->is_mobile)
-                            <x-icons.mobile />
-                        @else
-                            <x-icons.desktop />
-                        @endif
-                        {{ $device->name }}
-                    </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
+    <livewire:components.sidebar/>
 @endsection

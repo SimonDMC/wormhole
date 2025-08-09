@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DeviceController;
 use App\Http\Controllers\RoomController;
 use App\Http\Middleware\RegisteredMiddleware;
 use App\Http\Middleware\RoomMiddleware;
@@ -19,8 +20,6 @@ Route::group(['middleware' => UnregisteredMiddleware::class], function () {
     Route::view('/join/{code}', 'pages.join')
         ->name('room.join')
         ->middleware(RoomMiddleware::class);
-    Route::post('/register', [RoomController::class, 'register'])
-        ->name('room.register');
 });
 
 Route::group(['middleware' => RegisteredMiddleware::class], function () {

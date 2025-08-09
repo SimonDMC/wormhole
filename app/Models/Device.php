@@ -11,6 +11,7 @@ class Device extends Model
         'name', 
         'endpoint', 
         'p256dh', 
-        'auth'
+        'auth',
+        'is_mobile'
     ];
 }

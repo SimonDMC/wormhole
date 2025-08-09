@@ -30,6 +30,13 @@ body {
     color: #fff;
 }
 
+.wrap {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 h1 {
     font-weight: 900;
 }
@@ -290,7 +297,13 @@ button:active {
     flex-shrink: 0;
 }
 
-.device span {
+.device-name {
     text-overflow: ellipsis;
     overflow: hidden;
+    flex-grow: 1;
+}
+
+#edit-name, #leave-room {
+    color: #ccc;
+    cursor: pointer;
 }
