@@ -46,33 +46,45 @@ const base64UrlToUint8Array = (base64UrlData: string) => {
     return buffer;
 };
 
-document
-    .getElementById("subscribe-btn")
-    ?.addEventListener("click", async () => {
-        let registration = await navigator.serviceWorker.ready;
-        let pushSubscription = await registration.pushManager.getSubscription();
+const subscribeBtn = document.getElementById(
+    "subscribe-btn"
+) as HTMLButtonElement;
+subscribeBtn?.addEventListener("click", createSubscription);
 
-        if (!pushSubscription) {
-            try {
-                pushSubscription = await registration.pushManager.subscribe({
-                    userVisibleOnly: true,
-                    applicationServerKey: base64UrlToUint8Array(
-                        (
-                            document.querySelector(
-                                'meta[name="vapid-public-key"]'
-                            ) as HTMLMetaElement
-                        ).content
-                    ),
-                });
-            } catch (e) {
-                console.error(e);
-                return false;
-            }
+// if subscription is already created, just use that and skip click
+(async () => {
+    if (!document.getElementById("subscribe-btn")) return;
+    let registration = await navigator.serviceWorker.ready;
+    let pushSubscription = await registration.pushManager.getSubscription();
+    if (pushSubscription) createSubscription();
+})();
+
+async function createSubscription() {
+    let registration = await navigator.serviceWorker.ready;
+    let pushSubscription = await registration.pushManager.getSubscription();
+
+    if (!pushSubscription) {
+        try {
+            pushSubscription = await registration.pushManager.subscribe({
+                userVisibleOnly: true,
+                applicationServerKey: base64UrlToUint8Array(
+                    (
+                        document.querySelector(
+                            'meta[name="vapid-public-key"]'
+                        ) as HTMLMetaElement
+                    ).content
+                ),
+            });
+        } catch (e) {
+            console.error(e);
+            return false;
         }
+    }
 
-        document.getElementById("name-wrap")?.classList.remove("hidden");
-        document.getElementById("name")?.focus();
-    });
+    subscribeBtn.disabled = true;
+    document.getElementById("name-wrap")?.classList.remove("hidden");
+    document.getElementById("name")?.focus();
+}
 
 document
     .getElementById("name")
@@ -84,6 +96,9 @@ document
 
 document.getElementById("link-btn")?.addEventListener("click", () => {
     document.getElementById("link-wrap")?.classList.toggle("hidden");
+    document.getElementById("sent-link")?.classList.add("hidden");
+    document.getElementById("sent-file")?.classList.add("hidden");
+    document.getElementById("progress-wrap")?.classList.add("hidden");
     document.getElementById("link")?.focus();
 });
 
@@ -104,3 +119,9 @@ roomCode?.addEventListener("click", () => {
         }, 300);
     };
 });
+
+document
+    .getElementById("link")
+    ?.addEventListener("keydown", (e: KeyboardEvent) => {
+        if (e.key == "Enter") document.getElementById("link-arrow")?.click();
+    });

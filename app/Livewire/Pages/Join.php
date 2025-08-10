@@ -38,27 +38,7 @@ class Join extends Component
         ]);
 
         session(['device_id' => $device->id]);
-        
         RoomDevicesChanged::dispatch($room);
-
-        /* $subscription = Subscription::create([
-              "endpoint" => $device->endpoint,
-              "keys" => [
-                  'p256dh' => $device->p256dh,
-                  'auth' => $device->auth,
-              ],
-        ]);
-
-        $webPush = new WebPush(['VAPID' => [
-            'subject' => env('VAPID_CONTACT'),
-            'publicKey' => env('VAPID_PUBLIC_KEY'),
-            'privateKey' => env('VAPID_PRIVATE_KEY'),
-        ]]);
-        $webPush->sendOneNotification($subscription, json_encode([
-            'title' => 'Hello!',
-            'text' => 'Encrypted body content',
-            'url' => 'https://example.com',
-        ])); */
 
         return redirect(route('dashboard'));
     }

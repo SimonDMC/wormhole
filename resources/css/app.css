@@ -164,12 +164,17 @@ button {
     transition: color .2s, scale .15s;
 }
 
-button:hover {
+button:not([disabled]):hover {
     color: #fff;
 }
 
-button:active {
+button:not([disabled]):active {
     scale: .98;
+}
+
+button[disabled] {
+    opacity: .7;
+    cursor: not-allowed;
 }
 
 #name-wrap {
@@ -213,6 +218,7 @@ button:active {
     background-color: #ccc;
     border-radius: inherit;
     width: 0;
+    transition: width .2s;
 }
 
 /**************************/
@@ -303,7 +309,23 @@ button:active {
     flex-grow: 1;
 }
 
-#edit-name, #leave-room {
+#devices-body a {
     color: #ccc;
     cursor: pointer;
+}
+
+.success-txt {
+    font-size: .8em;
+    color: #00bb00;
+    font-weight: 500;
+    position: absolute;
+    transition: opacity .2s, translate .2s;
+}
+
+#sent-link {
+    margin-top: 12em;
+}
+
+#sent-file {
+    margin-top: 9.8em;
 }

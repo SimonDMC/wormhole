@@ -27,6 +27,12 @@ return new class extends Migration
             $table->boolean('is_mobile');
             $table->timestamps();
         });
+
+        Schema::create('files', function (Blueprint $table) {
+            $table->id();
+            $table->string('uid');
+            $table->timestamps();
+        });
     }
 
     /**
@@ -34,6 +40,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('files');
         Schema::dropIfExists('devices');
         Schema::dropIfExists('rooms');
     }
