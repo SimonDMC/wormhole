@@ -42,6 +42,8 @@ return [
             'driver' => 'local',
             'root' => storage_path('app/files'),
             'throw' => false,
+            'visibility' => 'public',
+            'directory_visibility' => 'public',
         ],
 
         'public' => [
