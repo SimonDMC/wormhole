@@ -70,9 +70,9 @@ class Dashboard extends Component
 
     private function broadcast($payload) {
         $webPush = new WebPush(['VAPID' => [
-            'subject' => env('VAPID_CONTACT'),
-            'publicKey' => env('VAPID_PUBLIC_KEY'),
-            'privateKey' => env('VAPID_PRIVATE_KEY'),
+            'subject' => config('app.vapid.contact'),
+            'publicKey' => config('app.vapid.public_key'),
+            'privateKey' => config('app.vapid.private_key'),
         ]]);
 
         foreach ($this->room->devices as $roomDevice) {

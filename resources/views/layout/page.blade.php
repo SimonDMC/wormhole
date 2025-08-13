@@ -19,7 +19,7 @@
         <link rel="manifest" href="/manifest.json">
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <meta name="vapid-public-key" content="{{ env('VAPID_PUBLIC_KEY') }}">
+        <meta name="vapid-public-key" content="{{ config('app.vapid.public_key') }}">
 
         @vite(['resources/js/app.ts'])
     </head>
