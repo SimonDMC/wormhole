@@ -30,6 +30,7 @@ class FilesCleanCommand extends Command
         $files = File::where('created_at', '<=', now()->addHours(-1))->get();
 
         foreach($files as $file) {
+            $this->info("Deleting file " . $file->uid);
             Storage::disk('files')->deleteDirectory($file->uid);
             $file->delete();
         }
