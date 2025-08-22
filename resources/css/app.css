@@ -1,4 +1,5 @@
 @import './view-transitions.css';
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
 
 :root {
     font-family: Inter, sans-serif;
@@ -86,25 +87,25 @@ h1 {
 
 #join {
     position: absolute;
-    margin-top: 7.25em;
+    margin-top: 7.3em;
     transition: opacity .2s, translate .2s;
     display: flex;
-    gap: .3em;
+    gap: .25em;
 }
 
 input[type="text"] {
     background-color: #0b0b0b;
     outline: none;
     border: none;
-    font-size: 1em;
-    font-family: monospace;
+    font-size: .8em;
+    font-family: "Roboto Mono";
     border-radius: 5px;
     color: #fff;
 }
 
 #join input {
-    width: 6.5em;
-    padding: .2em .75em;
+    width: 6.7em;
+    padding: .2em .65em;
 }
 
 input::placeholder {
@@ -187,7 +188,7 @@ button[disabled] {
 
 #name {
     width: 10em;
-    padding: .2em .6em;
+    padding: .2em .5em;
 }
 
 #link-wrap {
@@ -234,31 +235,38 @@ button[disabled] {
 
 #side {
     position: absolute;
-    margin-left: 25.5em;
+    margin-left: 26.2em;
 }
 
 #room-code-text {
     font-weight: 500;
     margin-bottom: .3em;
     flex-shrink: 0;
+    display: flex;
+    gap: .4em;
 }
 
 #room-code {
     background-color: #0b0b0b;
-    padding: .1em .3em;
+    padding: .1em .4em;
     border-radius: 5px;
     color: transparent;
     transition: color .2s;
     cursor: pointer;
+    font-family: "Roboto Mono";
+    font-size: .8em;
+    font-weight: 400;
+    display: inline-flex;
+    justify-content: center;
 }
 
 #room-code::before {
     content: 'hover';
     position: absolute;
     color: #555;
-    margin: .25em 1em;
     border-radius: 5px;
     transition: color .2s;
+    margin-left: auto;
 }
 
 #room-code:hover {
@@ -287,7 +295,7 @@ button[disabled] {
     display: flex;
     flex-direction: column;
     gap: .15em;
-    width: 9em;
+    width: 9.8em;
 }
 
 .device {
@@ -314,18 +322,18 @@ button[disabled] {
     cursor: pointer;
 }
 
-.success-txt {
-    font-size: .8em;
-    color: #00bb00;
-    font-weight: 500;
-    position: absolute;
-    transition: opacity .2s, translate .2s;
-}
+@media (max-width: 600px) {
+    #bar {
+        display: none;
+    }
 
-#sent-link {
-    margin-top: 12em;
-}
+    #side {
+        position: absolute;
+        bottom: .8em;
+        margin-left: 0;
+    }
 
-#sent-file {
-    margin-top: 9.8em;
+    body {
+        padding-bottom: 5em;
+    }
 }

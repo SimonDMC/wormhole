@@ -1,7 +1,7 @@
 <div class="wrap">
     <button id="subscribe-btn">Enable Notifications</button>
     <div id="name-wrap" class="hidden" wire:ignore>
-        <input wire:model="name" id="name" type="text" placeholder="Name this device">
+        <input wire:model="name" id="name" type="text" placeholder="Device Name">
         <div id="name-arrow" class="arrow-btn">
             <x-icons.arrow/>
         </div>

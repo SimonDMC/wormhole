@@ -1,7 +1,7 @@
 import "./bootstrap";
 import "../css/app.css";
 
-navigator.serviceWorker.register("/sw.js");
+navigator.serviceWorker?.register("/sw.js");
 
 const csrfToken = (
     document.querySelector('meta[name="csrf-token"]') as HTMLMetaElement
@@ -96,8 +96,6 @@ document
 
 document.getElementById("link-btn")?.addEventListener("click", () => {
     document.getElementById("link-wrap")?.classList.toggle("hidden");
-    document.getElementById("sent-link")?.classList.add("hidden");
-    document.getElementById("sent-file")?.classList.add("hidden");
     document.getElementById("progress-wrap")?.classList.add("hidden");
     document.getElementById("link")?.focus();
 });

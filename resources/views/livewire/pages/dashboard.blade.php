@@ -21,21 +21,15 @@
         </label>
     </div>
 
-    <div id="link-wrap" class="hidden" wire:ignore>
+    <div id="link-wrap" class="hidden">
         <input wire:model="url" id="link" type="text" placeholder="URL">
         <div wire:click="broadcastLink" id="link-arrow" class="arrow-btn">
             <x-icons.arrow/>
         </div>
     </div>
-    <div id="sent-link" @class(['hidden' => !session()->has('sent-link'), 'success-txt'])>
-        Sent!
-    </div>
 
     <div id="progress-wrap" class="hidden" wire:ignore>
         <div id="progress-inner"></div>
-    </div>
-    <div id="sent-file" @class(['hidden' => !session()->has('sent-file'), 'success-txt'])>
-        Sent!
     </div>
 
     <div id="bar"></div>
@@ -53,7 +47,9 @@
                         @else
                             <x-icons.desktop />
                         @endif
-                        <span class="device-name">{{ e($device->name) }}</span>
+                        <span class="device-name" title="{{ e($device->name) }}">
+                            {{ e($device->name) }}
+                        </span>
                         @if ($device->id == $currentDevice->id)
                             <a wire:click="rename(prompt('Enter a new name'))">
                                 <x-icons.edit />
@@ -81,14 +77,17 @@
             input.addEventListener("change", () => {
                 if (input.files[0]) {
                     document.getElementById("link-wrap")?.classList.add("hidden");
-                    document.getElementById("sent-link")?.classList.add("hidden");
-                    document.getElementById("sent-file")?.classList.add("hidden");
                     document.getElementById("progress-wrap")?.classList.remove("hidden");
                     document.getElementById("progress-inner").style.width = 0;
 
                     $wire.upload('file', input.files[0], (uploadedFilename) => {
                         Livewire.dispatch('file-uploaded');
                         input.files[0] = null;
+                        document.getElementById("progress-wrap")?.classList.add("hidden");
+                        // clear only after fully hiding
+                        setTimeout(() => {
+                            document.getElementById("progress-inner").style.width = 0;
+                        }, 300);
                     }, () => {
                         // error
                     }, (event) => {
