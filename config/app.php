@@ -129,4 +129,10 @@ return [
         'public_key' => env('VAPID_PUBLIC_KEY'),
         'private_key' => env('VAPID_PRIVATE_KEY'),
     ],
+
+    // max size of all stored files at once
+    'max_total_size' => 10 * 1024 * 1024 * 1024, // 10 GB
+
+    // debug webhook url
+    'webhook_url' => env('WEBHOOK_URL'),
 ];

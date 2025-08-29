@@ -109,13 +109,21 @@ class Dashboard extends Component
 
     #[On('file-uploaded')]
     public function broadcastFile() {
+        if (File::sum('size') > config('app.max_total_size')) {
+            send_debug_webhook("storage full");
+            return session()->flash('error', 'Server is busy now, try later.');
+        }
+
         $isImage = in_array($this->file->getClientOriginalExtension(), ['jpg', 'jpeg', 'png', 'gif', 'webp', 'avif']);
 
         $filename = $this->file->getClientOriginalName();
         $uid = Str::random(10);
 
         Storage::disk('files')->putFileAs($uid, $this->file, $filename);
-        File::create(['uid' => $uid]);
+        File::create([
+            'uid' => $uid,
+            'size' => $this->file->getSize()
+        ]);
 
         $icon = null;
         if ($isImage) {

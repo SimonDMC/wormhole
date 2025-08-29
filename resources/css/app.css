@@ -222,6 +222,10 @@ button[disabled] {
     transition: width .2s;
 }
 
+#error-msg {
+    margin-top: 8.3em;
+}
+
 /**************************/
 
 #bar {

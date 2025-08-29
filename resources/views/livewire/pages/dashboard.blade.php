@@ -32,6 +32,10 @@
         <div id="progress-inner"></div>
     </div>
 
+    <div id="error-msg" @class(["hidden" => !session()->has('error'), "error-txt"])>
+        {{ session('error') }}
+    </div>
+
     <div id="bar"></div>
     <div id="side">
         <div id="room-code-text">Room code: <code id="room-code">
@@ -75,6 +79,14 @@
 
         function addUploadListener(input) {
             input.addEventListener("change", () => {
+                // limit upload size
+                const MAX_MB = 200;
+                if(input.files[0].size > MAX_MB * 1024 * 1024) {
+                    alert(`Maximum upload size is ${MAX_MB} MB.`);
+                    input.value = "";
+                    return;
+                }
+
                 if (input.files[0]) {
                     document.getElementById("link-wrap")?.classList.add("hidden");
                     document.getElementById("progress-wrap")?.classList.remove("hidden");
