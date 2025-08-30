@@ -21,10 +21,7 @@
     <div id="invalid-code" class="error-txt hidden">
         Invalid room code.
     </div>
-
-    <script>
-        if(!'PushManager' in window){
-            window.location.href = "{{ route('no-support') }}"
-        }
-    </script>
+    <a id="how-link" href="{{ route('how-it-works') }}">
+        ?
+    </a>
 @endsection

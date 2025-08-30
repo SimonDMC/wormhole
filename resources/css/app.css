@@ -40,15 +40,33 @@ body {
 
 h1 {
     font-weight: 900;
+    text-align: center;
+    line-height: .9em;
+    margin: .1em 0;
 }
 
 .copy {
     font-weight: 500;
     text-align: center;
+    max-width: 20em;
+    color: #ccc;
+    font-size: .85em;
+}
+
+.copy svg {
+    vertical-align: sub;
 }
 
 .copy p {
-    margin: .7em 0;
+    margin: 1em 0;
+}
+
+.copy .warn {
+    color: #cccc88;
+}
+
+.copy a {
+    color: inherit;
 }
 
 .box-row {
@@ -87,7 +105,7 @@ h1 {
 
 #join {
     position: absolute;
-    margin-top: 7.3em;
+    margin-top: 7.15em;
     transition: opacity .2s, translate .2s;
     display: flex;
     gap: .25em;
@@ -147,7 +165,7 @@ input::placeholder {
 }
 
 #invalid-code {
-    margin-top: 12.2em;
+    margin-top: 12em;
 }
 
 #cant-join {
@@ -193,7 +211,7 @@ button[disabled] {
 
 #link-wrap {
     position: absolute;
-    margin-top: 7.25em;
+    margin-top: 7.2em;
     transition: opacity .2s, translate .2s;
     display: flex;
     gap: .3em;
@@ -209,7 +227,7 @@ button[disabled] {
     width: 10.4em;
     background-color: #0b0b0b;
     height: .25em;
-    margin-top: 6.25em;
+    margin-top: 6.15em;
     border-radius: 5px;
     transition: opacity .2s, translate .2s;
 }
@@ -223,7 +241,42 @@ button[disabled] {
 }
 
 #error-msg {
-    margin-top: 8.3em;
+    margin-top: 8.1em;
+}
+
+footer {
+    font-size: .6em;
+    color: #ffffff22;
+    font-weight: 500;
+    position: absolute;
+    bottom: .4em;
+}
+
+footer a {
+    color: inherit;
+    text-decoration-thickness: 2px;
+}
+
+#how-link {
+    position: absolute;
+    top: .4em;
+    right: .4em;
+    font-weight: 900;
+    border: 4px solid #ccc;
+    color: #ccc;
+    width: 1.3em;
+    height: 1.3em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: color .2s, border .2s;
+}
+
+#how-link:hover {
+    color: #fff;
+    border: 4px solid #fff;
 }
 
 /**************************/
@@ -337,7 +390,13 @@ button[disabled] {
         margin-left: 0;
     }
 
-    body {
-        padding-bottom: 5em;
+    .copy {
+        font-size: .6em;
+        padding: 0 1em;
+    }
+
+    /* hide footer in dashboard */
+    body:has(#devices) footer {
+        display: none;
     }
 }

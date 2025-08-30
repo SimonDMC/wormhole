@@ -11,11 +11,14 @@ use Illuminate\Support\Facades\Route;
 
 Broadcast::routes(['middleware' => ['web']]);
 
+Route::view('/privacy', 'pages.privacy')
+        ->name('privacy');
+Route::view('/how-it-works', 'pages.how-it-works')
+        ->name('how-it-works');
+
 Route::group(['middleware' => UnregisteredMiddleware::class], function () {
     Route::view('/', 'pages.landing')
         ->name('landing');
-    Route::view('/no-support', 'pages.no-support')
-        ->name('no-support');
 
     Route::get('/create', [RoomController::class, 'create'])
         ->name('room.create');
