@@ -1,39 +1,41 @@
-<div class="wrap">
-    <h1>Wormhole</h1>
-    <div class="box-row">
-        <a id="link-btn" class="box">
-            <x-icons.link/>
-            Link
-        </a>
-        <label>
-            <a id="file-btn" class="box">
-                <x-icons.file/>
-                File
+<div class="wrap full-page">
+    <div class="transition swipe full-page grid">
+        <h1>Wormhole</h1>
+        <div class="box-row">
+            <a id="link-btn" class="box">
+                <x-icons.link/>
+                Link
             </a>
-            <input type="file" id="fileUpload" hidden>
-        </label>
-        <label>
-            <a id="image-btn" class="box">
-                <x-icons.image/>
-                Image
-            </a>
-            <input type="file" accept="image/*" id="imageUpload" hidden>
-        </label>
-    </div>
-
-    <div id="link-wrap" class="hidden">
-        <input wire:model="url" id="link" type="text" placeholder="URL">
-        <div wire:click="broadcastLink" id="link-arrow" class="arrow-btn">
-            <x-icons.arrow/>
+            <label>
+                <a id="file-btn" class="box">
+                    <x-icons.file/>
+                    File
+                </a>
+                <input type="file" id="fileUpload" hidden>
+            </label>
+            <label>
+                <a id="image-btn" class="box">
+                    <x-icons.image/>
+                    Image
+                </a>
+                <input type="file" accept="image/*" id="imageUpload" hidden>
+            </label>
         </div>
-    </div>
 
-    <div id="progress-wrap" class="hidden" wire:ignore>
-        <div id="progress-inner"></div>
-    </div>
+        <div id="link-wrap" class="hidden">
+            <input wire:model="url" id="link" type="text" placeholder="URL">
+            <div wire:click="broadcastLink" id="link-arrow" class="arrow-btn">
+                <x-icons.arrow/>
+            </div>
+        </div>
 
-    <div id="error-msg" @class(["hidden" => !session()->has('error'), "error-txt"])>
-        {{ session('error') }}
+        <div id="progress-wrap" class="hidden" wire:ignore>
+            <div id="progress-inner"></div>
+        </div>
+
+        <div id="error-msg" @class(["hidden" => !session()->has('error'), "error-txt"])>
+            {{ session('error') }}
+        </div>
     </div>
 
     <div id="bar"></div>

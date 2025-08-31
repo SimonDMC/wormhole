@@ -1,4 +1,4 @@
-<div class="wrap">
+<div class="transition swipe full-page grid">
     <button id="subscribe-btn">Enable Notifications</button>
     <div id="name-wrap" class="hidden" wire:ignore>
         <input wire:model="name" id="name" type="text" placeholder="Device Name">
