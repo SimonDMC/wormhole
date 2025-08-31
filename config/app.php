@@ -132,7 +132,10 @@ return [
 
     // max size of all stored files at once
     'max_total_size' => 10 * 1024 * 1024 * 1024, // 10 GB
+    // max size of a single uploaded file 
+    // (only checked client-side, restrict size server-side using POST body limit in php.ini)
+    'max_single_size_mb' => 200,
 
-    // debug webhook url
-    'webhook_url' => env('WEBHOOK_URL'),
+    // debug webhook url (not required)
+    'webhook_url' => env('WEBHOOK_URL', null),
 ];

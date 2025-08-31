@@ -82,7 +82,7 @@
         function addUploadListener(input) {
             input.addEventListener("change", () => {
                 // limit upload size
-                const MAX_MB = 200;
+                const MAX_MB = {{ config('app.max_single_size_mb') }};
                 if(input.files[0].size > MAX_MB * 1024 * 1024) {
                     alert(`Maximum upload size is ${MAX_MB} MB.`);
                     input.value = "";

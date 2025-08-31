@@ -16,6 +16,8 @@
         <meta content="Transfer files between devices with ease" name="description">
         <meta content="https://wormhole.simondmc.com" property="og:url" />
         <meta content="#1c1c1d" data-react-helmet="true" name="theme-color" />
+        <meta content="/" property="og:url" />
+        <meta content="https://simondmc.com/assets/imgs/covers/websites/wormhole.webp" property="og:image" />
         <link rel="manifest" href="/manifest.json">
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
